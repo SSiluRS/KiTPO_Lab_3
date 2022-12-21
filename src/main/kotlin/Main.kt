@@ -11,10 +11,10 @@ import java.util.*
 
 object Main {
     private fun test(builder: UserTypeBuilder) {
-        var i = 1
-        while (i < 2000) {
-            val n = i * 1000
-            println("N = $n")
+        var i = 64
+        while (i < 20000) {
+            val n = i * 10000
+            print("$n\t")
             val mylist = list.List()
             for (j in 0 until n) builder.create()?.let { mylist.add(it) }
             val start = System.nanoTime()
@@ -25,7 +25,7 @@ object Main {
                 return
             }
             val end = System.nanoTime()
-            println("Millis elapsed " + (end - start) * 1.0 / 1000000)
+            println((end - start) * 1.0 / 1000000000)
             i *= 2
         }
     }
@@ -35,7 +35,7 @@ object Main {
         val userTypeList = Arrays.asList("PolarVector", "Double")
         val ui = UI()
         val uf = UserFactory()
-        ui.showMenu()
+        //ui.showMenu()
         for (s in userTypeList) {
             println("$s: ")
             val builder: UserTypeBuilder = uf.getBuilderByName(s)
